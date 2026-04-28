@@ -6,24 +6,17 @@ pool:
 
 stages:
 
-# BUILD STAGE
 - stage: Build
-  displayName: 'Build Stage'
   jobs:
   - job: BuildJob
-    displayName: 'Build Job'
     steps:
-    - script: mvn clean package
+    - script: mvn clean package -DskipTests
       displayName: 'Build Project'
 
-# TEST STAGE
 - stage: Test
-  displayName: 'Test Stage'
   dependsOn: Build
-  condition: succeeded()
   jobs:
   - job: TestJob
-    displayName: 'Test Job'
     steps:
     - script: mvn test
       displayName: 'Run Tests'
