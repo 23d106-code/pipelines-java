@@ -18,8 +18,8 @@ stages:
   jobs:
   - job: TestJob
     steps:
-    - script: mvn test
-      displayName: 'Run Tests'
+    - script: mvn -B test -DforkCount=0 -DreuseForks=false
+      displayName: 'Run Tests Safely'
 
     - task: PublishTestResults@2
       inputs:
